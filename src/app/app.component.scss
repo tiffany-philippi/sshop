@@ -1,0 +1,12 @@
+.side-menu {
+  height: calc(100vh - 62px);
+  width: 200px;
+  margin-right: 20px;
+  .active {
+    color: red;
+  }
+}
+.login-content {
+  width: 70%;
+  margin: 0 auto 20px;
+}
