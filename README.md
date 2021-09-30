@@ -1,27 +1,15 @@
-# Sshop
+# s-shop
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
+O projeto consiste em um site de compras, que possui uma página administrativa simples para cadastro de produtos e listagem de compras.
 
-## Development server
+## Requisitos da máquina
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Para que o projeto funcione, você deve ter instaladas todas as dependências do Angular. Caso seja seu primeiro contato com o framework, dê uma olhada neste link: https://angular.io/guide/setup-local.
+Em uma pasta local, você abrirá o promt de comando e fará o clone do projeto. Basta rodar o seguinte: https://github.com/tiffany-philippi/sshop.git.
+Feito isso, entre na pasta e rode `npm i` para instalar localmente as dependêncis deste projeto.
+Após instaladas, o próximo passo é rodar o projeto. Para isso, rode o comando: `ng serve`.
+Como há uma área de login para o administrador acessar uma área restrita, foi criado um arquivo para localizar o usuário e validar o acesso. Para isso, é necessário rodar um segundo comando em um outro prompt: 
+`json-server --watch db.json` (se não funcionar, tente colocar `npx` na frente)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+O projeto foi desenvolvido para visualização web.
