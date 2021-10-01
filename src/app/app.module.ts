@@ -12,6 +12,7 @@ import { LoginPageComponent } from './admin/login/login-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BasicImportsModule } from './config/imports/basic-imports.module';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BasicImportsModule } from './config/imports/basic-imports.module';
     NgbModule,
     AppRoutingModule,
     BasicImportsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

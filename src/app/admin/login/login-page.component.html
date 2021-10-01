@@ -1,4 +1,4 @@
-<div class="login-card d-flex align-items-center justify-content-center">
+<div class="login-card full-screen d-flex align-items-center justify-content-center">
   <mat-card class="login-card">
     <h1 class="font-size-21 mb-4 font-weight-bold">Faça seu login</h1>
     <p class="mb-2">Se você não possui um e-mail e senha de acesso, solicite a um superior.</p>
@@ -6,17 +6,18 @@
         routerLink="/home">tela de compras</a>.</p>
 
     <form class="d-flex flex-column login-form" [formGroup]="form">
-      <mat-form-field class="login-form-field" appearance="fill">
+      <mat-form-field class="custom-form-field" appearance="fill">
         <mat-label>E-mail</mat-label>
         <input matInput placeholder="Digite seu e-mail" formControlName="email" required>
       </mat-form-field>
 
-      <mat-form-field class="login-form-field" appearance="fill">
+      <mat-form-field class="custom-form-field" appearance="fill">
         <mat-label>Senha</mat-label>
         <input matInput type="password" placeholder="Digite sua senha" formControlName="password" required>
       </mat-form-field>
 
-      <button mat-flat-button class="font-weight-bold bg-primary-color submit-button" (click)="submitForm()">ENTRAR</button>
+      <button mat-flat-button class="font-weight-bold bg-primary-color submit-button"
+        (click)="submitForm()">ENTRAR</button>
     </form>
   </mat-card>
 </div>

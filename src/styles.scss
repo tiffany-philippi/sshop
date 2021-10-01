@@ -21,19 +21,52 @@ a.underline-link {
 .bg-secondary-color {
   background-color: $secondary-color;
 }
+.bg-blue-color {
+  background-color: $blue-light;
+}
 .bg-danger-color {
-  background-color: rgba(205, 60, 60, 0.44);;
+  background-color: $danger-color;
 }
 .bg-warning-color {
-  background-color: rgba(244, 213, 102, 0.81);;
+  background-color: $warning-color;
 }
 
 .c-white {
   color: white;
 }
+.c-grey {
+  color: $grey-color;
+}
+
+.full-container {
+  width: calc(90vw - 220px);
+}
+.full-screen {
+  width: calc(100% + 220px)
+}
+
+.w-25 {
+  width: 25%;
+}
+.w-10 {
+  width: 10%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-15 {
+  width: 15%;
+}
+
+.p-r-3rem {
+  padding-right: 3rem;
+}
 
 .font-size-11 {
   font-size: 11px;
+}
+.font-size-14 {
+  font-size: 14px;
 }
 .font-size-16 {
   font-size: 16px;
@@ -43,4 +76,22 @@ a.underline-link {
 }
 .font-size-24 {
   font-size: 24px;
+}
+
+.custom-form-field {
+  height: 70px;
+  font-size: 14px;
+  ::ng-deep &.mat-form-field-invalid {
+    .mat-form-field-ripple {
+      background-color: $red-color !important;
+    }
+  }
+  ::ng-deep {
+    .mat-form-field-ripple {
+      background-color: $primary-color;
+    }
+    .mat-form-field-underline:before {
+      background-color: $secondary-color;
+    }
+  }
 }

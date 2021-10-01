@@ -4,24 +4,26 @@
 </nav>
 
 <div class="d-flex">
-  <div [ngClass]="getClass() == 'd-none' ? 'd-none' : 'd-flex'"
-    class="side-menu bg-secondary-color flex-column justify-content-between">
+  <div class="bg-secondary-color h-100vh">
+    <div [ngClass]="getClass() == 'd-none' ? 'd-none' : 'd-flex'"
+      class="side-menu flex-column justify-content-between">
 
-    <nav class="nav flex-column">
-      <ng-container *ngFor="let menu of menuList">
-        <a class="nav-link text-center text-uppercase font-size-16 pt-4 pb-4" [routerLink]="menu.route"
-          [ngClass]="getClass(menu.route)">{{menu.title}}</a>
-      </ng-container>
-    </nav>
+      <nav class="nav flex-column">
+        <ng-container *ngFor="let menu of menuList">
+          <a class="nav-link text-center text-uppercase font-size-16 pt-4 pb-4" [routerLink]="menu.route"
+            [ngClass]="getClass(menu.route)">{{menu.title}}</a>
+        </ng-container>
+      </nav>
 
-    <div class="d-flex align-items-center login-content">
-      <img src="../assets/icons/person.svg" alt="">
-      <span *ngIf="!user" class="font-size-11 ml-2">É admin? Faça seu <a class="underline-link" routerLink="admin/login">login</a>.</span>
-      <span *ngIf="user" class="font-size-11 ml-4"><a class="underline-link" (click)="logout()">Sair</a>.</span>
+      <div class="d-flex align-items-center login-content">
+        <img src="../assets/icons/person.svg" alt="">
+        <span *ngIf="!isLogged" class="font-size-11 ml-2">É admin? Faça seu <a class="underline-link"
+            routerLink="admin/login">login</a>.</span>
+        <span *ngIf="isLogged" class="font-size-11 ml-4"><a class="underline-link" (click)="logout()">Sair</a>.</span>
+      </div>
     </div>
   </div>
-
-  <div>
+  <div class="side-content d-flex align-items-center flex-column">
     <router-outlet></router-outlet>
   </div>
 </div>

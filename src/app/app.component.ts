@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
 
-interface MenuList{
-  title: string;
-  route: string;
-}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,35 +11,25 @@ interface MenuList{
 export class AppComponent implements OnInit{
   title = 'sshop';
   user: any;
+  isLogged: boolean = false;
+  subscription: Subscription;
   menuList: Array<MenuList> = [];
-  menuStore: Array<MenuList> = [
-    {
-      title: 'Home',
-      route: '/home'
-    },
-    {
-      title: 'Cesta',
-      route: '/cart'
-    },
-  ]
-  menuUser: Array<MenuList> = [
-    {
-      title: 'Produtos',
-      route: '/admin/produtos'
-    },
-    {
-      title: 'Compras',
-      route: '/admin/compras'
-    },
-  ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private storage: LocalStorageService
+    ) {
+    }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('user_logged'));
-    console.log(this.user)
-    this.menuList = this.user ? this.menuUser : this.menuStore;
+    this.subscription = this.storage.getUserLogged()
+    .subscribe(arg => this.isLogged = arg);
+    this.subscription = this.storage.getMenuList()
+    .subscribe(arg => this.menuList = arg);
+
+    this.user = this.storage.get('LOCAL_USER_LOGGED');
   }
+
 
   getClass(param?: string) {
     if (param && param == this.router.url) {
@@ -53,8 +41,11 @@ export class AppComponent implements OnInit{
   }
 
   logout() {
-    this.user = localStorage.removeItem("user_logged");
-    location.reload();
     this.router.navigate(['/home']);
+    this.user = this.storage.remove("LOCAL_USER_LOGGED");
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+}
 }

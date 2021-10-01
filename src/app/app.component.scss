@@ -1,7 +1,6 @@
 .side-menu {
   height: calc(100vh - 62px);
   width: 200px;
-  margin-right: 20px;
   .active {
     color: red;
   }
@@ -9,4 +8,12 @@
 .login-content {
   width: 70%;
   margin: 0 auto 20px;
+}
+.side-content {
+  margin-left: 20px;
+  width: calc(100vw - 220px);
+
+}
+.h-100vh {
+  height: 100vh;
 }

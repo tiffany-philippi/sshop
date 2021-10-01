@@ -1,1 +1,62 @@
-<p>products-page works!</p>
+<div class="home-page full-container">
+  <div class="mt-4 d-flex align-items-center">
+    <span class="font-size-14 c-grey">Admin</span>
+    <span class="font-size-14 c-grey ml-1 mr-1"><img src="../../../assets/icons/chevron.svg" alt="chevron-right"></span>
+    <span class="font-size-14 c-grey">Produtos</span>
+  </div>
+
+  <div class="form-products mt-4">
+    <form [formGroup]="productsForm">
+      <mat-form-field class="custom-form-field p-r-3rem w-25" appearance="fill">
+        <mat-label>Nome do produto</mat-label>
+        <input matInput type="text" formControlName="productName">
+      </mat-form-field>
+
+      <mat-form-field class="custom-form-field p-r-3rem w-50" appearance="fill">
+        <mat-label>Descrição</mat-label>
+        <input matInput type="text" formControlName="description">
+      </mat-form-field>
+
+      <mat-form-field class="custom-form-field p-r-3rem w-15" appearance="fill">
+        <span matPrefix>R$</span>
+        <mat-label>Preço</mat-label>
+        <input matInput type="number" formControlName="price" class="text-center">
+      </mat-form-field>
+      <button mat-button class="add-product-button w-10" (click)="addProduct()"><img
+          src="../../../assets/icons/plus-product.svg" alt="adicionar-produto"></button>
+    </form>
+  </div>
+
+  <ng-container *ngIf="products">
+    <div class="products-list">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="product">
+          <th mat-header-cell *matHeaderCellDef class="w-25">Produto</th>
+          <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef class="w-50">Descrição</th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="qtd">
+          <th mat-header-cell *matHeaderCellDef class="w-10">Preço</th>
+          <td mat-cell *matCellDef="let element"> {{element.price | currency: 'BRL'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="add">
+          <th mat-header-cell *matHeaderCellDef class="w-15"></th>
+          <td mat-cell *matCellDef="let element" class="text-center">
+            <button mat-button class="remove-product-button w-10" (click)="removeProduct(element)"><img
+              src="../../../assets/icons/remove.svg" alt="remover-produto"></button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+  </ng-container>
+</div>

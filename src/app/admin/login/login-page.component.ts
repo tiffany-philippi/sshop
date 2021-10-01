@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { SnackBarService } from 'src/app/shared/snack-bar.service';
 import { LoginService } from '../service/login.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private service: LoginService,
-    private _snackBar: MatSnackBar
+    private snackBarService: SnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -33,30 +34,21 @@ export class LoginPageComponent implements OnInit {
     if (this.form.valid) {
       this.service.getUser().subscribe(res => {
         const user = res.find(e => e.email == this.form.value.email && e.senha == this.form.value.password);
+
         if (user) {
-          console.log(user)
-          localStorage.setItem('user_logged', JSON.stringify(user));
-          location.reload();
+          localStorage.setItem('LOCAL_USER_LOGGED', JSON.stringify(user));
           this.router.navigate(['/admin/produtos']);
         } else {
-          this.openSnackBar('Usuário ou senha incorretos. Tente novamente.', 'bg-danger-color');
+          this.snackBarService.openSnackBar('Usuário ou senha incorretos. Tente novamente.', 'bg-danger-color');
         }
+
       }, err => {
-        this.openSnackBar('Não foi possível realizar o login. Tente novamente.', 'bg-secondary-color');
+        this.snackBarService.openSnackBar('Não foi possível realizar o login. Tente novamente.', 'bg-secondary-color');
       });
+
     } else {
-        this.openSnackBar('Preencha corretamente os campos. Tente novamente.', 'bg-warning-color');
-        return;
+      this.snackBarService.openSnackBar('Preencha corretamente os campos.', 'bg-warning-color');
+      return;
     }
   }
-
-  openSnackBar(text: string, panelClass: string) {
-    this._snackBar.open(text, '', {
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      duration: 5000,
-      panelClass: panelClass
-    });
-  }
-
 }

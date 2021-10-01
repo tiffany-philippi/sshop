@@ -1,0 +1,27 @@
+.form-products {
+  .custom-form-field {
+    ::ng-deep {
+      .mat-form-field-prefix {
+        bottom: 4px;
+      }
+      .mat-form-field-flex {
+        height: 40px;
+        .mat-form-field-infix {
+          bottom: 4px;
+        }
+      }
+    }
+  }
+  .add-product-button {
+    position: relative;
+    bottom: 13px;
+  }
+}
+
+.products-list {
+  width: 100%;
+  table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}

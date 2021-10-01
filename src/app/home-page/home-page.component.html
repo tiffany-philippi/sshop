@@ -1,1 +1,57 @@
-<p>home-page works!</p>
+<div class="home-page full-container">
+  <div class="mt-4">
+    <span class="font-size-14 c-grey">Home</span>
+  </div>
+  <ng-container *ngIf="products">
+    <div class="search-product">
+      <mat-form-field appearance="standard">
+        <mat-label>Pesquisar</mat-label>
+        <span matPrefix class="mr-2"><img src="../../assets/icons/search.svg" alt="search"></span>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Padaria" #input>
+      </mat-form-field>
+    </div>
+
+    <div class="products-list">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="product">
+          <th mat-header-cell *matHeaderCellDef class="w-25">Produto</th>
+          <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef class="w-50">Descrição</th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="qtd">
+          <th mat-header-cell *matHeaderCellDef class="w-10"></th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center bg-blue-color quantity-column">
+              <img (click)="changeQuantity(element, 'remove')" src="../../assets/icons/dash-cart.svg" alt="dash-cart">
+              <input disabled class="bg-blue-color text-center border-none" [(ngModel)]="element.qtd" type="tel">
+              <img (click)="changeQuantity(element, 'add')" src="../../assets/icons/plus-cart.svg" alt="plus-cart">
+            </div>
+
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="add">
+          <th mat-header-cell *matHeaderCellDef class="w-15"></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-flat-button
+              class="add-item-button d-flex align-items-center text-uppercase bg-blue-color font-weight-bold"
+              (click)="addItem(element)">Adicionar</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+  </ng-container>
+
+  <div *ngIf="!products" class="mt-4">
+    <span class="font-size-24">Não há produtos cadastrados =(</span>
+  </div>
+</div>
