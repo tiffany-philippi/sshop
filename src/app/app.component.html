@@ -16,10 +16,11 @@
 
     <div class="d-flex align-items-center login-content">
       <img src="../assets/icons/person.svg" alt="">
-      <span class="font-size-11 ml-2">É admin? Faça seu <a class="underline-link" routerLink="admin/login">login</a>.
-      </span>
+      <span *ngIf="!user" class="font-size-11 ml-2">É admin? Faça seu <a class="underline-link" routerLink="admin/login">login</a>.</span>
+      <span *ngIf="user" class="font-size-11 ml-4"><a class="underline-link" (click)="logout()">Sair</a>.</span>
     </div>
   </div>
+
   <div>
     <router-outlet></router-outlet>
   </div>

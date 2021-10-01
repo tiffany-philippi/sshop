@@ -17,4 +17,5 @@ export class LoginService {
   getUser():Observable<User[]> {
     return this._http.get<User[]>(this.url);
   }
+
 }

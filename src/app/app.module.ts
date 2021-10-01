@@ -20,7 +20,7 @@ import { BasicImportsModule } from './config/imports/basic-imports.module';
     CartPageComponent,
     ProductsPageComponent,
     PurchasesPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginService } from '../service/login.service';
 
@@ -13,7 +14,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private service: LoginService
+    private service: LoginService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -28,19 +30,33 @@ export class LoginPageComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.form);
     if (this.form.valid) {
       this.service.getUser().subscribe(res => {
         const user = res.find(e => e.email == this.form.value.email && e.senha == this.form.value.password);
         if (user) {
           console.log(user)
+          localStorage.setItem('user_logged', JSON.stringify(user));
+          location.reload();
           this.router.navigate(['/admin/produtos']);
+        } else {
+          this.openSnackBar('Usuário ou senha incorretos. Tente novamente.', 'bg-danger-color');
         }
-      })
+      }, err => {
+        this.openSnackBar('Não foi possível realizar o login. Tente novamente.', 'bg-secondary-color');
+      });
     } else {
-      // @todo adicionar mensagem de erro
-      return;
+        this.openSnackBar('Preencha corretamente os campos. Tente novamente.', 'bg-warning-color');
+        return;
     }
+  }
+
+  openSnackBar(text: string, panelClass: string) {
+    this._snackBar.open(text, '', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 5000,
+      panelClass: panelClass
+    });
   }
 
 }
