@@ -16,4 +16,5 @@ Como há uma área de login para o administrador acessar uma área restrita, foi
 
 
 
-O projeto foi desenvolvido para visualização web.
+O projeto foi desenvolvido para visualização web. Tenha certeza de que você possui uma boa conexão com a internet.
+É possível acompanhar o layout pré desenhado no link: https://www.figma.com/file/ltnIO8VJF61LN77mI80EXw/s-shop?node-id=0%3A1.
