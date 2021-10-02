@@ -1,43 +1,18 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { EventEmitter } from 'stream';
+import { Injectable, EventEmitter } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
   private storage: Storage;
-  private isLogged = new BehaviorSubject<boolean>(false);
-  private menuList = new BehaviorSubject<MenuList[]>([]);
-  private menuStore: Array<MenuList> = [
-    {
-      title: 'Home',
-      route: '/home'
-    },
-    {
-      title: 'Cesta',
-      route: '/cart'
-    },
-  ]
-  private menuUser: Array<MenuList> = [
-    {
-      title: 'Produtos',
-      route: '/admin/produtos'
-    },
-    {
-      title: 'Compras',
-      route: '/admin/compras'
-    },
-  ];
+  private user: boolean = false;
+
+  private isLogged: EventEmitter<boolean> = new EventEmitter<boolean>(this.user);
+  userActive: Observable<boolean> = this.isLogged.asObservable();
+
   constructor() {
     this.storage = window.localStorage;
-  }
-
-  getUserLogged() {
-    return this.isLogged.asObservable();
-  }
-  getMenuList() {
-    return this.menuList.asObservable();
   }
 
   set(key: string, value: any): boolean {
@@ -50,22 +25,19 @@ export class LocalStorageService {
 
   get(key: string): any {
     if (this.storage) {
-      if (key == 'LOCAL_USER_LOGGED') {
-        this.isLogged.next(true)
-        this.menuList.next(this.menuUser);
-      };
-      return JSON.parse(this.storage.getItem(key));
+      const getKey = JSON.parse(this.storage.getItem(key))
+      if (key == 'LOCAL_USER_LOGGED' && getKey != null) this.isLogged.emit(true);
+      else if (key == 'LOCAL_USER_LOGGED' && getKey == null) this.isLogged.emit(false);
+      return getKey;
     }
     return null;
   }
 
   remove(key: string): boolean {
     if (this.storage) {
-      if (key == 'LOCAL_USER_LOGGED') {
-        this.isLogged.next(false)
-        this.menuList.next(this.menuStore);
-      };
+      console.log(key);
       this.storage.removeItem(key);
+      if (key == 'LOCAL_USER_LOGGED') this.isLogged.emit(false);
       return true;
     }
     return false;
