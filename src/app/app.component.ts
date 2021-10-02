@@ -11,7 +11,6 @@ import { LocalStorageService } from './local-storage.service';
 export class AppComponent implements OnInit {
   title = 'sshop';
   isLogged: boolean = false;
-  menuList: Array<MenuList> = [];
   subscription: Subscription;
 
   private menuStore: Array<MenuList> = [
@@ -34,6 +33,7 @@ export class AppComponent implements OnInit {
       route: '/admin/compras'
     },
   ];
+  menuList: Array<MenuList> = this.menuStore;
 
   constructor(
     private router: Router,
@@ -44,9 +44,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.storage.userActive.subscribe(
       (active) => {
+        console.log('ll', active)
         this.isLogged = active;
+        console.log(this.isLogged)
         if (active) this.menuList = this.menuUser;
         else this.menuList = this.menuStore;
+        console.log(this.menuList)
       }
     )
   }
@@ -65,5 +68,9 @@ export class AppComponent implements OnInit {
     this.storage.remove("LOCAL_USER_LOGGED");
     this.isLogged = false;
     this.router.navigate(['/home']);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

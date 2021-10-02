@@ -6,6 +6,7 @@ import { SnackBarService } from 'src/app/shared/snack-bar.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ProductService } from 'src/app/shared/products/product.service';
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.component.html',
@@ -23,7 +24,8 @@ export class ProductsPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private snackBarService: SnackBarService,
     private router: Router,
-    private storage: LocalStorageService
+    private storage: LocalStorageService,
+    private productService: ProductService
   ) { }
 
   ngOnInit(): void {
@@ -69,20 +71,5 @@ export class ProductsPageComponent implements OnInit {
     }
   }
 
-  removeProduct(item: Product) {
-    const products = this.products;
-    let filteredProducts = [];
-    const id = item.productName;
-
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].productName !== id) {
-        filteredProducts.push(products[i])
-      }
-    }
-
-    this.storage.set('LOCAL_PRODUCTS_LIST', filteredProducts);
-    location.reload();
-    return;
-  }
 
 }

@@ -1,23 +1,7 @@
 .home-page {
-  .products-list {
-    width: 100%;
-    table {
-      width: 100%;
-      margin-bottom: 20px;
-      .quantity-column {
-        padding: 3px;
-        border-radius: 2px;
-        width: 80px;
-        input {
-          width: 100%;
-        }
-      }
-      .add-item-button {
-        height: 28px;
-      }
-      .border-none {
-        border: none;
-      }
+  .products-list table {
+    .add-item-button {
+      height: 28px;
     }
   }
 }

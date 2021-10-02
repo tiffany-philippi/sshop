@@ -28,6 +28,7 @@ export class LocalStorageService {
       const getKey = JSON.parse(this.storage.getItem(key))
       if (key == 'LOCAL_USER_LOGGED' && getKey != null) this.isLogged.emit(true);
       else if (key == 'LOCAL_USER_LOGGED' && getKey == null) this.isLogged.emit(false);
+      console.log(this.isLogged)
       return getKey;
     }
     return null;

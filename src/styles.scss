@@ -78,6 +78,10 @@ a.underline-link {
   font-size: 24px;
 }
 
+.border-none {
+  border: none;
+}
+
 .custom-form-field {
   height: 70px;
   font-size: 14px;
@@ -92,6 +96,24 @@ a.underline-link {
     }
     .mat-form-field-underline:before {
       background-color: $secondary-color;
+    }
+  }
+}
+
+
+.products-list {
+  width: 100%;
+  table {
+    width: 100%;
+    margin-bottom: 20px;
+
+    .quantity-column {
+      padding: 3px;
+      border-radius: 2px;
+      width: 80px;
+      input {
+        width: 100%;
+      }
     }
   }
 }

@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../local-storage.service';
+import { ProductService } from '../shared/products/product.service';
 import { SnackBarService } from '../shared/snack-bar.service';
 
 @Component({
@@ -20,9 +21,9 @@ export class HomePageComponent implements OnInit {
   products: Product[];
 
   constructor(
-    private snackBarService: SnackBarService,
     private router: Router,
-    private storage: LocalStorageService
+    private storage: LocalStorageService,
+    private productService: ProductService
   ) { }
 
   ngOnInit(): void {
@@ -48,25 +49,5 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  changeQuantity(item, action) {
-    if (action == 'add') {
-      item.qtd++;
 
-    } else if (action == 'remove') {
-      if (item.qtd == 0) return;
-      item.qtd--;
-
-    } else return;
-  }
-
-  addItem(element) {
-    const cart = this.storage.get('LOCAL_CART');
-    let cartItems: any[] = [];
-
-    if (cart != null) cartItems = cart;
-    cartItems.push(element);
-
-    this.storage.set('LOCAL_CART', cartItems)
-
-  }
 }
