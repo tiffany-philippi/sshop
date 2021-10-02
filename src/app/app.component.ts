@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
+import { MenuList } from './shared/models/menu-list';
 
 @Component({
   selector: 'app-root',
@@ -44,12 +45,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.storage.userActive.subscribe(
       (active) => {
-        console.log('ll', active)
         this.isLogged = active;
-        console.log(this.isLogged)
         if (active) this.menuList = this.menuUser;
         else this.menuList = this.menuStore;
-        console.log(this.menuList)
       }
     )
   }

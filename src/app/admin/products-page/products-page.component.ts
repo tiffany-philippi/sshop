@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/shared/products/product.service';
+import { Product } from 'src/app/shared/models/product';
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.component.html',

@@ -1,4 +1,4 @@
-interface MenuList{
+export class MenuList{
   title: string;
   route: string;
 }

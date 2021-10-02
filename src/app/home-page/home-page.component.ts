@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../local-storage.service';
+import { Product } from '../shared/models/product';
 import { ProductService } from '../shared/products/product.service';
 import { SnackBarService } from '../shared/snack-bar.service';
 

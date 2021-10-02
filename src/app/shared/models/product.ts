@@ -1,4 +1,4 @@
-interface Product {
+export class Product {
   productName: string;
   description: string;
   price: number;

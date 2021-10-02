@@ -3,17 +3,17 @@
     <span class="font-size-14 c-grey">Cesta</span>
   </div>
 
-  <div class="form-products mt-4">
-    <form [formGroup]="nameForm">
-      <mat-form-field class="custom-form-field w-100" appearance="fill">
-        <mat-label>Nome completo</mat-label>
-        <input matInput type="text" class="border-none" formControlName="name">
-      </mat-form-field>
-
-    </form>
-  </div>
-
   <ng-container *ngIf="cart">
+    <div class="form-products mt-4">
+      <form [formGroup]="nameForm">
+        <mat-form-field class="custom-form-field w-100" appearance="fill">
+          <mat-label>Nome completo</mat-label>
+          <input matInput type="text" class="border-none" formControlName="name">
+        </mat-form-field>
+
+      </form>
+    </div>
+
     <div class="products-list">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="qtd">
@@ -56,6 +56,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of cart"></mat-paginator>
 
       <div class="d-flex flex-column align-items-end mt-4">

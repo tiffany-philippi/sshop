@@ -5,6 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../local-storage.service';
+import { Product } from '../shared/models/product';
+import { Purchase } from '../shared/models/purchase';
 import { ProductService } from '../shared/products/product.service';
 import { SnackBarService } from '../shared/snack-bar.service';
 
@@ -67,7 +69,7 @@ export class CartPageComponent implements OnInit {
     if (this.nameForm.valid) {
       let purchase: Purchase[] = [];
       const item: Purchase = {
-        name: this.nameForm.value,
+        name: this.nameForm.value.name,
         qtd: this.cart.length,
         total: this.countTotal()
       }
