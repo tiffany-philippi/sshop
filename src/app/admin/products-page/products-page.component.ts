@@ -33,7 +33,6 @@ export class ProductsPageComponent implements OnInit {
     const user = this.storage.get('LOCAL_USER_LOGGED');
     if (!user) this.router.navigate(['/admin/login']);
     this.createForm();
-    console.log((this.productsForm.controls['productName']));
 
     this.products = this.storage.get('LOCAL_PRODUCTS_LIST');
     this.dataSource.data = this.products;
